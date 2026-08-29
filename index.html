@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Interactive multi-topic quiz application"
+    />
+
+    <title>Interactive Quiz Application</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container header-content">
+        <div class="logo">
+          <div class="logo-icon">🧠</div>
+
+          <div class="logo-text">
+            <h1>QuizMaster</h1>
+
+            <span class="logo-badge"> Ready to Play </span>
+
+            <p>Test your knowledge</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="home-screen" class="screen quiz-selection">
+        <div class="container">
+          <div class="hero">
+            <span class="hero-badge"> 🎯 Interactive Quiz </span>
+
+            <h2>Choose Your Quiz</h2>
+
+            <p>
+              Select a topic and test your knowledge. Answer 10 questions and
+              see how well you perform!
+            </p>
+          </div>
+
+          <div id="quizzes" class="quiz-grid">
+            <article class="quiz-card science-card">
+              <div class="quiz-icon">🔬</div>
+
+              <h3>Science</h3>
+
+              <p>Test your knowledge of science, nature and the human body.</p>
+
+              <div class="quiz-info">
+                <span>📝 10 Questions</span>
+                <span>⏱️ 20s each</span>
+              </div>
+
+              <button type="button" class="quiz-btn" data-quiz="science">
+                Start Quiz
+              </button>
+            </article>
+
+            <article class="quiz-card history-card">
+              <div class="quiz-icon">🏛️</div>
+
+              <h3>History</h3>
+
+              <p>Explore famous people, events and moments from history.</p>
+
+              <div class="quiz-info">
+                <span>📝 10 Questions</span>
+                <span>⏱️ 20s each</span>
+              </div>
+
+              <button type="button" class="quiz-btn" data-quiz="history">
+                Start Quiz
+              </button>
+            </article>
+
+            <article class="quiz-card sports-card">
+              <div class="quiz-icon">⚽</div>
+
+              <h3>Sports</h3>
+
+              <p>Challenge yourself with questions about popular sports.</p>
+
+              <div class="quiz-info">
+                <span>📝 10 Questions</span>
+                <span>⏱️ 20s each</span>
+              </div>
+
+              <button type="button" class="quiz-btn" data-quiz="sports">
+                Start Quiz
+              </button>
+            </article>
+
+            <article class="quiz-card movies-card">
+              <div class="quiz-icon">🎬</div>
+
+              <h3>Movies</h3>
+
+              <p>Test your knowledge of movies, characters and actors.</p>
+
+              <div class="quiz-info">
+                <span>📝 10 Questions</span>
+                <span>⏱️ 20s each</span>
+              </div>
+
+              <button type="button" class="quiz-btn" data-quiz="movies">
+                Start Quiz
+              </button>
+            </article>
+          </div>
+
+          <div class="high-score-card">
+            <div class="high-score-icon">🏆</div>
+
+            <div>
+              <h3>Best Score</h3>
+
+              <p id="high-score">0%</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="quiz-screen" class="screen quiz-screen hidden">
+        <div class="container quiz-container">
+          <div class="quiz-header">
+            <button type="button" id="back-home-btn" class="back-btn">
+              ← Exit Quiz
+            </button>
+
+            <div class="quiz-title-wrapper">
+              <span class="small-label"> CURRENT QUIZ </span>
+
+              <h2 id="quiz-title">Science Quiz</h2>
+            </div>
+
+            <div class="score-display">
+              <span>Score</span>
+
+              <strong id="score">0</strong>
+            </div>
+          </div>
+
+          <div class="progress-section">
+            <div class="progress-info">
+              <span>
+                Question
+                <strong id="question-number">1</strong>
+                of
+                <strong id="total-questions">10</strong>
+              </span>
+
+              <strong id="percentage"> 10% </strong>
+            </div>
+
+            <div class="progress-bar">
+              <div id="progress-fill" class="progress-fill"></div>
+            </div>
+          </div>
+
+          <div class="timer-wrapper">
+            <div class="timer-icon">⏱️</div>
+
+            <div class="timer-text">
+              Time remaining:
+              <strong id="timer">20</strong>s
+            </div>
+          </div>
+
+          <div class="question-card">
+            <div class="question-number-badge">
+              Q<span id="question-badge">1</span>
+            </div>
+
+            <h3 id="question">Question will appear here</h3>
+
+            <p class="answer-instruction">Select the correct answer</p>
+
+            <div class="answers" id="answers"></div>
+          </div>
+
+          <div class="quiz-navigation">
+            <button type="button" id="previous-btn" class="secondary-btn">
+              ← Previous
+            </button>
+
+            <button type="button" id="next-btn" class="primary-btn">
+              Next →
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="results-screen" class="screen results-screen hidden">
+        <div class="container results-container">
+          <div class="results-header">
+            <span class="hero-badge"> 🎉 Quiz Complete </span>
+
+            <h2>Great Job!</h2>
+
+            <p class="result-message">Keep learning and try again!</p>
+          </div>
+
+          <div class="score-circle">
+            <div class="score-circle-inner">
+              <strong id="final-percentage"> 0% </strong>
+
+              <span> Score </span>
+            </div>
+          </div>
+
+          <div class="result-stats">
+            <div class="stat-card">
+              <span class="stat-icon"> ✅ </span>
+
+              <strong id="final-score"> 0 </strong>
+
+              <span> Correct </span>
+            </div>
+
+            <div class="stat-card">
+              <span class="stat-icon"> ❌ </span>
+
+              <strong id="incorrect-count"> 0 </strong>
+
+              <span> Incorrect </span>
+            </div>
+
+            <div class="stat-card">
+              <span class="stat-icon"> 📝 </span>
+
+              <strong id="final-total"> 10 </strong>
+
+              <span> Total </span>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-header">
+              <h3>Question Review</h3>
+
+              <p>See which answers you got right and wrong.</p>
+            </div>
+
+            <div id="review-list"></div>
+          </div>
+
+          <div class="result-actions">
+            <button type="button" id="retake-btn" class="primary-btn">
+              🔄 Retake Quiz
+            </button>
+
+            <button type="button" id="new-quiz-btn" class="secondary-btn">
+              📚 Choose Another Quiz
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        © 2026 <strong>QuizMaster</strong>
+        | Interactive Quiz Application
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
